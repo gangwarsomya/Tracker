@@ -29,14 +29,23 @@ This application provides real-time location tracking using Socket.IO, Leaflet, 
    ```
 3. Install dependencies:
    ```bash
-   npm install
+   npx nodemon
+   ```
+   ```bash
+   npm init -y
+   ```
+   ```bash
+   npm i express ejs
+   ```
+   ```bash
+   npm i socket.io  
    ```
 
 ### Running the Application
 
 1. Start the server:
    ```bash
-   npm start
+   npx nodemon app.js 
    ```
 2. Open your web browser and go to `http://localhost:3000`.
 
