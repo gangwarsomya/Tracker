@@ -1,3 +1,4 @@
+
 # Real-Time Location Tracker
 
 This application provides real-time location tracking using Socket.IO, Leaflet, and Express.js. Users can share their location, and the map dynamically updates to display the positions of all connected users.
@@ -8,7 +9,7 @@ This application provides real-time location tracking using Socket.IO, Leaflet, 
 * Leaflet map integration for visualization.
 * User connection and disconnection handling.
 * Error handling and input validation for location data.
-* Dynamically updated user count on the map.
+* Dynamically updated user count on the main page.
 
 ## Getting Started
 
@@ -20,64 +21,53 @@ This application provides real-time location tracking using Socket.IO, Leaflet, 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/gangwarsomya/Tracker.git
-Use code with caution.
-Markdown
-Navigate to the project directory:
+   git clone https://github.com/gangwarsomya/Tracker.git 
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd Tracker
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-cd Tracker
-Use code with caution.
-Bash
-Install dependencies:
+### Running the Application
 
-npm install
-Use code with caution.
-Bash
-Running the application
-Start the server:
+1. Start the server:
+   ```bash
+   npm start
+   ```
+2. Open your web browser and go to `http://localhost:3000`.
 
-npm start
-Use code with caution.
-Bash
-Open your web browser and go to http://localhost:3000.
+## Technologies Used
 
-Technologies Used
-Node.js: Server-side JavaScript runtime environment.
+* **Node.js:** Server-side JavaScript runtime environment.
+* **Express.js:** Web framework for Node.js.
+* **Socket.IO:** Enables real-time, bidirectional communication.
+* **Leaflet:** JavaScript library for interactive maps.
+* **EJS:** Templating engine for dynamic HTML.
 
-Express.js: Web framework for Node.js.
+## File Structure
 
-Socket.IO: Enables real-time, bidirectional communication.
+* **app.js:** Main server-side application logic (handles Socket.IO connections, location updates, and user management).
+* **public/js/script.js:** Client-side JavaScript for handling geolocation, map interaction, and Socket.IO communication.
+* **public/css/style.css:** Styles for the application.
+* **views/index.ejs:** HTML template for the main page.
+* **README.md:** This file.
 
-Leaflet: JavaScript library for interactive maps.
+## How It Works
 
-EJS: Templating engine.
+1. **Client-Side (`script.js`):**
+   - Obtains the user's location using `navigator.geolocation.watchPosition()`.
+   - Emits the location data to the server via a Socket.IO event called `send-location`.
+   - Listens for `receive-location` events from the server (containing other users' locations) and updates the Leaflet map markers accordingly.
+   - Handles user disconnection events to remove markers from the map.
 
-File Structure
-app.js: Server-side logic (Socket.IO connections, location updates, user management).
+2. **Server-Side (`app.js`):**
+   - Establishes a Socket.IO connection.
+   - Listens for `send-location` events from clients. Validates the received location data.
+   - Broadcasts the received location data to all connected clients via the `receive-location` event.
+   - Manages connected users and emits `user-disconnected` events when a client disconnects.
+   - Renders the `index.ejs` file, passing the number of active users to the template.
 
-public/js/script.js: Client-side JavaScript (geolocation, map interaction, Socket.IO communication).
-
-public/css/style.css: Application styles.
-
-views/index.ejs: Main HTML template.
-
-README.md: This file.
-
-How it Works
-Client-side (script.js):
-
-Uses navigator.geolocation.watchPosition() to continuously track the user's location.
-
-Sends location data to the server via Socket.IO's send-location event.
-
-Receives location updates from other users via the receive-location event and updates the Leaflet map markers.
-
-Server-side (app.js):
-
-Listens for incoming Socket.IO connections.
-
-Handles send-location events from clients, validating the received data.
-
-Broadcasts the received location data to all connected clients using the receive-location event.
-
-Manages connected users and emits user-disconnected events when a user disconnects.
