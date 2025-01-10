@@ -43,11 +43,10 @@ This application provides real-time location tracking using Socket.IO, Leaflet, 
 
 ### Running the Application
 
-1. Start the server:
+ Start the server:
    ```bash
    npx nodemon app.js 
    ```
-2. Open your web browser and go to `http://localhost:3000`.
 
 ## Technologies Used
 
